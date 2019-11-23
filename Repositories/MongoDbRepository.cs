@@ -18,7 +18,8 @@ namespace UndoneAspNetCoreApi.Repositories
 
         public MongoDbRepository()
         {
-            var mongoClient = new MongoClient("mongodb://localhost:27017");
+            //var mongoClient = new MongoClient("mongodb://localhost:27017");
+            var mongoClient = new MongoClient(DatabaseConsts.databaseString);
             var database = mongoClient.GetDatabase("undone");
             collection = database.GetCollection<Player>("players");
             bsonDocumentCollection = database.GetCollection<BsonDocument>("players");

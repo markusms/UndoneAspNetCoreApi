@@ -10,12 +10,14 @@ namespace UndoneAspNetCoreApi.Models
         public bool IsBanned { get; set; }
         public bool IsAdmin { get; set; }
         public DateTime CreationTime { get; set; }
+        public string shardPlayers { get; set; }
         public Run[] Runs { get; set; }
 
         public Player()
         {
             Id = Guid.NewGuid();
             CreationTime = DateTime.UtcNow;
+            shardPlayers = "shard";
         }
 
         public Player(NewPlayer newPlayer)
@@ -26,6 +28,7 @@ namespace UndoneAspNetCoreApi.Models
             Password = newPlayer.Password;
             IsBanned = false;
             IsAdmin = false;
+            shardPlayers = "shard";
         }
 
         //get information about the player without revealing passwords
