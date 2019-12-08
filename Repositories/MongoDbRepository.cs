@@ -103,12 +103,18 @@ namespace UndoneAspNetCoreApi.Repositories
                 }
             }
 
-            foreach (var player in players)
+            foreach (var player in players.Reverse<Player>())
             {
+                if(player.Runs.Length == 0)
+                {
+                    players.Remove(player);
+                    continue;
+                }
                 var list = new List<Run>(player.Runs);
                 list = list.OrderBy(x => x.TimeTaken).ToList();
                 player.Runs = list.ToArray();
             }
+            
             players = players.OrderBy(x => x.Runs[0].TimeTaken).ToList();
 
             List<PlayerInformation> playerList = new List<PlayerInformation>();
